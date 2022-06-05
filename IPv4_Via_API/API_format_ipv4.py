@@ -38,7 +38,6 @@ def split_IP_and_covert_to_Hex(ipv4):
     subnet = ipv4[1]
     hex_ip_list = []
 
-    # print(subnet)
     subnet = int(subnet)
     if subnet < 8:
         ip_list = upgrade_ip(ip, subnet, 0, 8)
