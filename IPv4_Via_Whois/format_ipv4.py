@@ -1,34 +1,39 @@
 import binascii
+from hashlib import new
 import itertools 
 import socket
 
-def upgrade_ip(ip, subnet, lower_range, upper_range):
+def upgrade_ip(ip, subnet, lower_range, upper_range, byte_to_change, bits_to_change):
     ip_temp = ip.split('.')
-    first_byte = ip_temp[0]
-    second_byte = ip_temp[1]
-    third_byte = ip_temp[2]
-    fourth_byte = ip_temp[3]
-    ip_list = []
+    byte = ip_temp[byte_to_change]
+    ip_list = []                    #104.101.220.0/23    16    24   23
 
     if subnet > lower_range and subnet < upper_range:                               # upgrate subnet.
         difference = subnet - lower_range
-        binary = bin(int(second_byte))
-        binary = binary[2:len(ip)-2]                                                # remove xb
+        binary = bin(int(byte))
+        # print(binary)
+        binary = binary[2:len(ip)]   # remove xb
+        # binary = binary[2:len(byte)]   # remove xb
+        
+        # print(binary)
         if len(binary) < 8:                                                         # make binary len == to 8
             while len(binary) != 8:
                 binary = str(0)+binary
-          
+        # print(binary)
+        network_portion = binary[0:(8-bits_to_change)]
+        # print(network_portion)
         n = 8 - difference
-        lst = list(itertools.product(['0', '1'], repeat=n))                         # combinations of ip
+        lst = list(itertools.product(['0', '1'], repeat=n))      # combinations of ip
     
         for index in lst:
-            new_sum = index[0]
-            for j in range(1, len(index)):
-                new_sum += index[j]
 
-            second_byte = str(int((binary[0:difference] + new_sum), 2) )
-            single_ip = first_byte+"."+second_byte+"."+third_byte+"."+fourth_byte
-            ip_list.append(single_ip)
+            value = ''.join(index)
+            # print("Binary", network_portion+value)
+            new_byte = int(network_portion+value,2)
+            # print(new_byte)
+            ip_temp[byte_to_change] = str(new_byte)
+            ip_address = '.'.join(ip_temp)
+            ip_list.append(ip_address)
 
     return ip_list
         
@@ -37,18 +42,23 @@ def split_IP_and_covert_to_Hex(ipv4):
     ip = ipv4[0]
     subnet = ipv4[1]
     hex_ip_list = []
-
     subnet = int(subnet)
+    
     if subnet < 8:
-        ip_list = upgrade_ip(ip, subnet, 0, 8)
+        bits_to_change = 8-subnet
+        ip_list = upgrade_ip(ip, subnet, 0, 8, 0, bits_to_change)
         subnet = str(8)
 
-    elif subnet > 8 and subnet < 16:                                                  # upgrate subnet.
-        ip_list = upgrade_ip(ip, subnet, 8, 16)
+    elif subnet > 8 and subnet < 16:   # upgrate subnet.
+        bits_to_change = 16-subnet
+        
+        ip_list = upgrade_ip(ip, subnet, 8, 16, 1, bits_to_change)
         subnet = str(16)
 
     elif subnet > 16 and subnet < 24:
-        ip_list = upgrade_ip(ip, subnet, 16, 24)
+        bits_to_change = 24-subnet
+        
+        ip_list = upgrade_ip(ip, subnet, 16, 24, 2, bits_to_change)            #104.101.220.0/23
         subnet = str(24)
 
     elif subnet ==8 or subnet == 16 or subnet >= 24:
@@ -65,6 +75,7 @@ def split_IP_and_covert_to_Hex(ipv4):
 
 list_of_files = ["akamai","amazon_cloudfront","aryaka","cachefly","cdn77","cdnetworks","cloudfare","fastly",
                  "incapsula","limelight01","limelight02","rackspace01","rackspace02","softlayer","stackpath"]
+# list_of_files = ["limelight02"]
 
 length = len(list_of_files)
 files_index = 0
@@ -79,6 +90,7 @@ while files_index < length:
 
         for i in range(len(hex_ip_list)):           
             print(" ","{",hex_ip_list[i],"/*",ipv4_list[i],"*/,",subnet+",",var,"},")       
+            # pass
     files_index+=1 
 
 
