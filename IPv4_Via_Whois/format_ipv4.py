@@ -70,17 +70,19 @@ while files_index < length:
     file = list_of_files[files_index]
     ip_file = open(file+".txt", "r")
     var = file.upper()
-    if files_index == (length-1):
-        print("/*CDN_"+var+"*/")
-    else:
-        print("/*APPLICATION_"+var+"*/")
-        
+    print("/*"+var+"*/")
     
     for index, ipv4  in enumerate(ip_file):   
   
         hex_ip , ip_list, subnet, ip = split_IP_and_covert_to_Hex(ipv4, ip_list)
         if (ip not in final_list) and (ip not in ip_list):
-            print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",",var,"},") 
+            # print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",","APPLICATION_"+var,"},") 
+            print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",","CDN_"+var,"},") 
+            
+            # print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",",var,"},") 
+            
             final_list.append(ip)
                   
     files_index+=1 
+
+
