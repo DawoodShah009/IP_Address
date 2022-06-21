@@ -1,3 +1,7 @@
+"""
+This program reads ip's files, remove IP's subsets and then print the remaining IPs
+"""
+
 import binascii
 from hashlib import new
 import itertools 
@@ -68,7 +72,7 @@ while files_index < length:
     ip_list = []
     final_list = []
     file = list_of_files[files_index]
-    ip_file = open(file+".txt", "r")
+    ip_file = open("../IPs/"+file+".txt", "r")
     var = file.upper()
     print("/*"+var+"*/")
 
@@ -79,8 +83,8 @@ while files_index < length:
         hex_ip , ip_list, subnet, ip = split_IP_and_covert_to_Hex(ipv4, ip_list)
         if (ip not in final_list) and (ip not in ip_list):
             # print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",",var,"},") 
-            # print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",","APPLICATION_"+var,"},") 
-            print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",","CDN_"+var,"},") 
+            print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","APPLICATION_"+var,"},") 
+            # print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","CDN_"+var,"},") 
             
             
             final_list.append(ip)
