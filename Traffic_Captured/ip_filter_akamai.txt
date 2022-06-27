@@ -1,0 +1,15 @@
+ip.addr == 104.101.220.0/23 or ip.addr == 151.122.128.0/17 or ip.addr == 184.26.164.0/24 or ip.addr == 184.27.116.0/24 or ip.addr == 184.51.125.0/24 or 
+ip.addr == 184.51.154.0/24 or ip.addr == 184.51.157.0/24 or ip.addr == 184.51.33.0/24 or ip.addr == 193.108.91.0/24 or ip.addr == 193.108.93.0/24 or 
+ip.addr == 193.108.95.0/24 or ip.addr == 198.93.38.0/24 or ip.addr == 199.48.106.0/24 or ip.addr == 2.16.36.0/24 or ip.addr == 2.16.37.0/24 or ip.addr == 
+2.22.226.0/24 or ip.addr == 2.22.227.0/24 or ip.addr == 2.22.60.0/24 or ip.addr == 23.15.11.0/24 or ip.addr == 23.15.12.0/24 or ip.addr == 23.15.13.0/24 
+or ip.addr == 23.209.105.0/24 or ip.addr == 23.34.0.0/20 or ip.addr == 23.62.225.0/24 or ip.addr == 23.74.29.0/24 or ip.addr == 23.79.224.0/24 or ip.addr 
+== 63.116.109.0/24 or ip.addr == 63.119.76.0/24 or ip.addr == 63.126.84.0/24 or ip.addr == 63.208.195.0/24 or ip.addr == 63.215.198.96/32 or ip.addr == 
+65.202.32.0/22 or ip.addr == 72.246.0.0/24 or ip.addr == 72.246.1.0/24 or ip.addr == 72.246.112.0/22 or ip.addr == 72.246.116.0/24 or ip.addr == 
+72.246.18.0/24 or ip.addr == 72.246.185.0/24 or ip.addr == 72.246.199.0/24 or ip.addr == 72.246.2.0/24 or ip.addr == 72.246.50.0/24 or ip.addr == 
+72.246.51.0/24 or ip.addr == 72.246.96.0/21 or ip.addr == 72.247.150.0/23 or ip.addr == 72.247.216.0/24 or ip.addr == 72.247.36.0/24 or ip.addr == 
+72.247.44.0/24 or ip.addr == 72.247.45.0/24 or ip.addr == 80.67.64.0/24 or ip.addr == 80.67.65.0/24 or ip.addr == 80.67.67.0/24 or ip.addr == 80.67.70.0/24 
+or ip.addr == 80.67.71.0/24 or ip.addr == 80.67.73.0/24 or ip.addr == 88.221.208.0/24 or ip.addr == 88.221.209.0/24 or ip.addr == 96.6.114.0/24
+
+
+Certain Ranges
+ip.addr == 92.123.96.0/14 or  ip.addr == 23.32.0.0/11 or  ip.addr == 23.64.0.0/14 or  ip.addr == 104.64.0.0/10 or  ip.addr == 184.50.0.0/15
