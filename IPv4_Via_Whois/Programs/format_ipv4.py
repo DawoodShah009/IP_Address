@@ -62,8 +62,8 @@ def split_IP_and_covert_to_Hex(ipv4, ip_list):
         
     
 
-list_of_files = ["akamai","amazon_cloudfront","aryaka","cachefly","cdn77","cdnetworks","cloudfare","fastly",
-                 "incapsula","limelight01","limelight02","rackspace01","rackspace02","softlayer","stackpath"]
+list_of_files = ["akamai","amazon","aryaka","cachefly","cdn77","cdNetwork","cloudfare","fastly",
+                 "incapsula","limelight","rackspace","softlayer","stackpath"]
 val_list = [8,16,24]
 length = len(list_of_files)
 files_index = 0
@@ -72,7 +72,7 @@ while files_index < length:
     ip_list = []
     final_list = []
     file = list_of_files[files_index]
-    ip_file = open(file+".txt", "r")
+    ip_file = open("../updated_IPs/"+file+".txt", "r")
     var = file.upper()
     print("/*"+var+"*/")
     
@@ -80,8 +80,8 @@ while files_index < length:
   
         hex_ip , ip_list, subnet, ip = split_IP_and_covert_to_Hex(ipv4, ip_list)
         if (ip not in final_list) and (ip not in ip_list):
-            print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","APPLICATION_"+var,"},") 
-            # print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","CDN_"+var,"},") 
+            # print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","APPLICATION_"+var,"},") 
+            print(" ","{",hex_ip+"0","/*",ip,"*/,",subnet+",","CDN_"+var,"},") 
             
             # print(" ","{",hex_ip,"/*",ip,"*/,",subnet+",",var,"},") 
             

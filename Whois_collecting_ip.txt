@@ -1,0 +1,1 @@
+whois -h whois.radb.net -- '-i origin AS?' | awk '/^route:/ {print$2}' | sort | uniq
